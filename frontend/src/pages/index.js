@@ -1,0 +1,12 @@
+export { default as Home } from './Home';
+export { default as Blogs } from './Blogs';
+export { default as BlogDetail } from './BlogDetail';
+export { default as Login } from './Login';
+export { default as Signup } from './Signup';
+export { default as Profile } from './Profile';
+export { default as Write } from './Write';
+export { default as EditBlog } from './EditBlog';
+export { default as Feed } from './Feed';
+export { default as Dashboard } from './Dashboard';
+export { default as Notes } from './Notes';
+export { default as AuthorProfile } from './AuthorProfile';

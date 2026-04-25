@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started with AI for Lazy Geniuses",
+    "excerpt": "Learn how to leverage AI without breaking a sweat. We explore the best shortcuts and automations for the modern thinker.",
+    "author": "Lazy Chief",
+    "date": "2024-04-21",
+    "content": "Full content of the blog post goes here...",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+    "tags": ["AI", "Beginner", "Productivity"],
+    "readingTime": "5 min"
+  },
+  {
+    "id": 2,
+    "title": "Top 5 AI Tools for Productivity in 2024",
+    "excerpt": "Boost your output with these simple AI integrations that actually work for your daily workflow, not just the hype.",
+    "author": "Productivity Guru",
+    "date": "2024-04-20",
+    "content": "Full content of the blog post goes here...",
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Tools", "效率", "Tech"],
+    "readingTime": "8 min"
+  },
+  {
+    "id": 3,
+    "title": "The Future of AI Blogging: AI Writing for Humans",
+    "excerpt": "Where is AI taking the world of content creation? Discover why human-AI collaboration is the ultimate secret sauce.",
+    "author": "AI Visionary",
+    "date": "2024-04-19",
+    "content": "Full content of the blog post goes here...",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Future", "Writing", "AI"],
+    "readingTime": "12 min"
+  },
+  {
+    "id": 4,
+    "title": "Mastering the Art of Prompt Engineering",
+    "excerpt": "It's not just about asking; it's about asking the right way. Learn the frameworks that get you the best results every time.",
+    "author": "Prompt Master",
+    "date": "2024-04-18",
+    "content": "Full content of the blog post goes here...",
+    "image": "https://images.unsplash.com/photo-1620712943543-bcc4638ef80b?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Prompts", "Tech", "Advanced"],
+    "readingTime": "10 min"
+  },
+  {
+    "id": 5,
+    "title": "AI Ethics: Why Lazy Geniuses Should Care",
+    "excerpt": "Building fast is great, but building right is better. A deep dive into responsible AI usage for the casual creator.",
+    "author": "Ethics Advocate",
+    "date": "2024-04-17",
+    "content": "Full content of the blog post goes here...",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800",
+    "tags": ["Ethics", "AI", "Society"],
+    "readingTime": "7 min"
+  }
+]

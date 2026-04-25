@@ -1,0 +1,47 @@
+import express from 'express';
+import cors from 'cors';
+import authRoutes from './routes/authRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
+import subscriberRoutes from './routes/subscriberRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
+import noteRoutes from './routes/noteRoutes.js';
+import progressRoutes from './routes/progressRoutes.js';
+import communityRoutes from './routes/communityRoutes.js';
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/blogs', blogRoutes);
+app.use('/api/comments', commentRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/ai', aiRoutes);
+app.use('/api/subscribe', subscriberRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/upload', uploadRoutes);
+app.use('/api/notes', noteRoutes);
+app.use('/api/progress', progressRoutes);
+app.use('/api/community', communityRoutes);
+
+// Test route
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ message: 'API is running' });
+});
+
+// Error Handler
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err.message);
+  res.status(err.status || 500).json({
+    message: err.message || 'An unexpected server error occurred',
+  });
+});
+
+export default app;
