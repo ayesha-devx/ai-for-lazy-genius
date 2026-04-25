@@ -19,15 +19,22 @@ const Login = () => {
     setLoading(true);
     setError('');
 
+    // Render Free Tier Wake-up warning
+    const wakeUpTimer = setTimeout(() => {
+      setError('The server is waking up... this can take up to 40 seconds on the first load.');
+    }, 5000);
+
     try {
       const { data } = await api.post('/auth/login', {
         email,
         password,
       });
       
+      clearTimeout(wakeUpTimer);
       login(data);
       navigate('/');
     } catch (err) {
+      clearTimeout(wakeUpTimer);
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
