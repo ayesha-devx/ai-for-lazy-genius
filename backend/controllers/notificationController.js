@@ -22,8 +22,8 @@ export const createNotification = async (data) => {
  */
 export const getNotifications = async (req, res) => {
   try {
-    const notifications = await Notification.find({ user: req.user.id })
-      .populate('sender', 'name username profileImage')
+    const notifications = await Notification.find({ user: req.user._id })
+      .populate('sender', 'name email avatar profileImage')
       .sort({ createdAt: -1 })
       .limit(50);
 
@@ -47,7 +47,7 @@ export const markAsRead = async (req, res) => {
     }
 
     // Verify ownership
-    if (notification.user.toString() !== req.user.id) {
+    if (notification.user.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
@@ -68,7 +68,7 @@ export const markAsRead = async (req, res) => {
 export const markAllAsRead = async (req, res) => {
   try {
     await Notification.updateMany(
-      { user: req.user.id, read: false },
+      { user: req.user._id, read: false },
       { read: true }
     );
 

@@ -16,7 +16,6 @@ import communityRoutes from './routes/communityRoutes.js';
 const app = express();
 
 app.use(cors());
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -42,11 +41,15 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Error Handler
+// Detailed Error Handler for Production Debugging
 app.use((err, req, res, next) => {
-  console.error('Server Error:', err.message);
+  console.error('SERVER ERROR:', err);
   res.status(err.status || 500).json({
+    status: 'error',
     message: err.message || 'An unexpected server error occurred',
+    // In production, we don't want to leak the stack trace unless explicitly needed for debugging
+    // but we'll keep the message descriptive.
+    errorType: err.name
   });
 });
 
