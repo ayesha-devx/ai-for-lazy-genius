@@ -35,12 +35,11 @@ const TextSelectionAI = () => {
             const range = sel.getRangeAt(0);
             const rect = range.getBoundingClientRect();
 
-            // Handle the case where rect might be empty (e.g. selection in hidden element)
             if (rect.width > 0) {
               setSelection(text);
               setButtonPos({
                 x: rect.left + rect.width / 2,
-                y: window.scrollY + rect.top - 45 // Add scrollY for fixed positioning correction
+                y: rect.top - 50 // Correct for 'fixed' positioning
               });
               setShowButton(true);
             }
@@ -60,10 +59,12 @@ const TextSelectionAI = () => {
       }
     };
 
-    // Mobile-friendly: selectionchange is the gold standard for touch devices
+    // Both listeners for maximum reliability on all devices
+    document.addEventListener('mouseup', handleSelectionUpdate);
     document.addEventListener('selectionchange', handleSelectionUpdate);
     document.addEventListener('mousedown', handleMouseDown);
     return () => {
+      document.removeEventListener('mouseup', handleSelectionUpdate);
       document.removeEventListener('selectionchange', handleSelectionUpdate);
       document.removeEventListener('mousedown', handleMouseDown);
     };
