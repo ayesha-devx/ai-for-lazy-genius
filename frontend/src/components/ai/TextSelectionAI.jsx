@@ -24,39 +24,47 @@ const TextSelectionAI = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseUp = (e) => {
+    const handleSelectionUpdate = () => {
       // Small delay to allow selection to finalize
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         const sel = window.getSelection();
         const text = sel.toString().trim();
 
         if (text && text.length > 20) { // Only for meaningful chunks
-          const range = sel.getRangeAt(0);
-          const rect = range.getBoundingClientRect();
+          try {
+            const range = sel.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
 
-          setSelection(text);
-          setButtonPos({
-            x: rect.left + rect.width / 2,
-            y: rect.top - 40
-          });
-          setShowButton(true);
+            // Handle the case where rect might be empty (e.g. selection in hidden element)
+            if (rect.width > 0) {
+              setSelection(text);
+              setButtonPos({
+                x: rect.left + rect.width / 2,
+                y: window.scrollY + rect.top - 45 // Add scrollY for fixed positioning correction
+              });
+              setShowButton(true);
+            }
+          } catch (e) {
+            // Range might be invalid during selection change
+          }
         } else {
           if (!isProcessing) setShowButton(false);
         }
-      }, 10);
+      }, 100);
+      return timer;
     };
 
     const handleMouseDown = (e) => {
-      // Hide button if clicking elsewhere (not the button itself)
       if (!e.target.closest('.ai-action-btn')) {
         setShowButton(false);
       }
     };
 
-    document.addEventListener('mouseup', handleMouseUp);
+    // Mobile-friendly: selectionchange is the gold standard for touch devices
+    document.addEventListener('selectionchange', handleSelectionUpdate);
     document.addEventListener('mousedown', handleMouseDown);
     return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('selectionchange', handleSelectionUpdate);
       document.removeEventListener('mousedown', handleMouseDown);
     };
   }, [isProcessing]);
