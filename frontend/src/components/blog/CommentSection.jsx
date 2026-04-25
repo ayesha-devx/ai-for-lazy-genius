@@ -4,6 +4,7 @@ import { Send, MessageCircle, Clock, Trash2, Loader2, AlertCircle } from 'lucide
 import blogService from '@/services/blogService';
 import useAuthStore from '@/store/authStore';
 import { formatDate } from '@/utils/formatDate';
+import { getRandomAvatar } from '@/utils/avatars';
 
 const CommentSection = ({ blogId, onCommentAdded }) => {
   const [comments, setComments] = useState([]);
@@ -82,7 +83,7 @@ const CommentSection = ({ blogId, onCommentAdded }) => {
               {isAuthenticated && (
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center overflow-hidden">
-                    <img src={user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.name}`} alt="" />
+                    <img src={(user.avatar && !user.avatar.includes('149071.png')) ? user.avatar : getRandomAvatar(user.name)} alt="" />
                   </div>
                   <span className="text-xs font-bold text-gray-500">{user.name.split(' ')[0]}</span>
                 </div>
@@ -129,7 +130,7 @@ const CommentSection = ({ blogId, onCommentAdded }) => {
                   <div className="flex gap-4">
                     <div className="shrink-0 w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border-2 border-white dark:border-zinc-800 shadow-sm overflow-hidden">
                       <img 
-                        src={comment.user?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${comment.user?.name}`} 
+                        src={(comment.user?.avatar && !comment.user.avatar.includes('149071.png')) ? comment.user.avatar : getRandomAvatar(comment.user?.name)} 
                         alt={comment.user?.name} 
                       />
                     </div>

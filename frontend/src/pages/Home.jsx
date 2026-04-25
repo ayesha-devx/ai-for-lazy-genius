@@ -148,6 +148,13 @@ const Home = () => {
                   <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
                 </Link>
 
+                <Link 
+                  to="/write"
+                  className="w-full sm:w-auto px-8 py-4 bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-2xl font-bold border border-purple-200 dark:border-purple-500/30 hover:bg-purple-100 dark:hover:bg-purple-500/20 transition-all hover:-translate-y-1 flex items-center justify-center gap-2"
+                >
+                  Start Writing
+                </Link>
+
               </motion.div>
             </div>
 
@@ -228,7 +235,7 @@ const Home = () => {
 
       {/* Categories Grid */}
       <Container>
-        <section>
+        <section id="categories-section">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-wider">

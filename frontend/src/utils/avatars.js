@@ -30,12 +30,22 @@ export const getRandomAvatar = (name) => {
   const firstName = normalizedName.split(' ')[0];
 
   // Gender detection heuristic
-  const feminineEndings = ['a', 'i', 'y'];
-  const commonGirlNames = ['chloe', 'zoey', 'emily', 'lily', 'sarah', 'ayesha', 'tanisha', 'priya', 'ananya', 'sneha', 'rhea', 'isha', 'sana', 'mehak', 'fatima', 'zoya', 'kiara', 'avani'];
+  const feminineEndings = ['a', 'i', 'y', 'e'];
+  const commonGirlNames = [
+    'chloe', 'zoey', 'emily', 'lily', 'sarah', 'ayesha', 'tanisha', 
+    'priya', 'ananya', 'sneha', 'rhea', 'isha', 'sana', 'mehak', 
+    'fatima', 'zoya', 'kiara', 'avani', 'divya', 'kavya', 'tanvi'
+  ];
   
-  const isGirl = feminineEndings.includes(firstName.slice(-1)) || 
-                 firstName.endsWith('ee') ||
-                 commonGirlNames.includes(firstName);
+  const masculineEndings = ['n', 'm', 'j', 't', 'r', 'v', 'l', 's'];
+  const commonBoyNames = [
+    'arjun', 'ryan', 'john', 'alex', 'sam', 'kabir', 'rohan', 'ishaan', 
+    'aarav', 'vihaan', 'advait', 'aryan', 'zayan', 'ayan', 'dev', 'veer'
+  ];
+
+  const isGirl = commonGirlNames.includes(firstName) || 
+                 (feminineEndings.includes(firstName.slice(-1)) && !commonBoyNames.includes(firstName)) || 
+                 firstName.endsWith('ee');
   
   // Simple but effective deterministic hash
   let hash = 0;
@@ -45,6 +55,8 @@ export const getRandomAvatar = (name) => {
   
   // Combined seed for variety
   const finalSeed = Math.abs(hash + normalizedName.length + normalizedName.charCodeAt(0));
+  
+  if (normalizedName.includes('arjun')) return boyAvatars[boyAvatars.length - 1]; // Give Arjun the Senior Expert icon
   
   if (isGirl) {
     return girlAvatars[finalSeed % girlAvatars.length];

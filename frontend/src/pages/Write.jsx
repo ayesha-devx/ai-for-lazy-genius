@@ -131,16 +131,8 @@ const Write = () => {
     }
   };
 
-  // Smart UX: Auto-generate image when title is long enough
-  useEffect(() => {
-    if (title.length > 10 && !image && !isGeneratingImage) {
-      const timeout = setTimeout(() => {
-        handleGenerateImage();
-      }, 2000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [title]);
+  // Smart UX: Auto-generate image is now disabled per user request
+  // Only manual selection or upload will trigger image loading
 
   const handleSubmit = async (e, status = 'published') => {
     if (e) e.preventDefault();

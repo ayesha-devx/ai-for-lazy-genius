@@ -8,7 +8,7 @@ export const registerUser = async (req, res) => {
   const { name, email, password, avatar } = req.body;
 
   try {
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });
 
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
@@ -16,7 +16,7 @@ export const registerUser = async (req, res) => {
 
     const user = await User.create({
       name,
-      email,
+      email: email.toLowerCase(),
       password,
       avatar,
     });
@@ -46,7 +46,7 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });
 
     if (user && (await user.matchPassword(password))) {
       res.json({

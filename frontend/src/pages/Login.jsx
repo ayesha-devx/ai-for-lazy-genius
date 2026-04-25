@@ -35,7 +35,20 @@ const Login = () => {
       navigate('/');
     } catch (err) {
       clearTimeout(wakeUpTimer);
-      setError(err.response?.data?.message || 'Something went wrong. Please try again.');
+      console.error('Login Failed Details:', {
+        status: err.response?.status,
+        data: err.response?.data,
+        message: err.message,
+        url: err.config?.url
+      });
+      setError(
+        <div>
+          {err.response?.data?.message || 'Something went wrong. Please try again.'}
+          <div className="mt-2 text-xs opacity-75">
+            Verify backend status: <a href="https://ai-for-lazy-genius.onrender.com/api/health" target="_blank" className="underline">Click Here</a>
+          </div>
+        </div>
+      );
     } finally {
       setLoading(false);
     }
