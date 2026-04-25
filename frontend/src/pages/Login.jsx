@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import api from '@/services/api';
 import { LogIn, Mail, Lock, Loader2 } from 'lucide-react';
 import useAuthStore from '@/store/authStore';
 
@@ -20,7 +20,7 @@ const Login = () => {
     setError('');
 
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/login', {
+      const { data } = await api.post('/auth/login', {
         email,
         password,
       });

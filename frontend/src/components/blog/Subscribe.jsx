@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
-import axios from 'axios';
+import api from '@/services/api';
 import { cn } from '@/utils/cn';
 
 /**
@@ -34,8 +34,8 @@ const Subscribe = ({ className, variant = "default" }) => {
     setSuccess(false);
 
     try {
-      // POST request to backend
-      const response = await axios.post('http://localhost:5000/api/subscribe', {
+      // POST request to backend using api instance
+      const response = await api.post('/subscribe', {
         email: email
       });
 

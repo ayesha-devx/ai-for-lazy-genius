@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import api from '@/services/api';
 import { UserPlus, Mail, Lock, User as UserIcon, Loader2 } from 'lucide-react';
 import useAuthStore from '@/store/authStore';
 
@@ -21,7 +21,7 @@ const Signup = () => {
     setError('');
 
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/register', {
+      const { data } = await api.post('/auth/register', {
         name,
         email,
         password,
