@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://ai-for-lazy-genius.onrender.com';
+const apiBase = rawBaseUrl.endsWith('/api') ? rawBaseUrl : `${rawBaseUrl.replace(/\/$/, '')}/api`;
+
 const api = axios.create({
-  baseURL: `${(import.meta.env.VITE_API_URL || '').replace(/\/$/, '')}/api`,
+  baseURL: apiBase,
   headers: {
     'Content-Type': 'application/json',
   },
