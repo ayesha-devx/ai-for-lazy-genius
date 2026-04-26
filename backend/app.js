@@ -15,7 +15,15 @@ import communityRoutes from './routes/communityRoutes.js';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://ai-for-lazy-genius.vercel.app", "http://localhost:5173"],
+  credentials: true
+}));
+
+// Root Route
+app.get('/', (req, res) => {
+  res.send('AI for Lazy Genius API is running. Visit /api/blogs for content.');
+});
 app.use(express.json());
 app.use(cookieParser());
 
