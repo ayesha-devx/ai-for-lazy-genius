@@ -8,33 +8,7 @@ import remarkGfm from 'remark-gfm';
 import SmartCoverPicker from '@/components/blog/SmartCoverPicker';
 
 // Premium Curated Cover Images
-import cover1 from '@/assets/covers/cover1.png';
-import cover2 from '@/assets/covers/cover2.png';
-import cover3 from '@/assets/covers/cover3.png';
-import cover4 from '@/assets/covers/cover4.png';
-import cover5 from '@/assets/covers/cover5.png';
-import cover6 from '@/assets/covers/cover6.png';
-import cover7 from '@/assets/covers/cover7.png';
-import cover8 from '@/assets/covers/cover8.png';
-import cover9 from '@/assets/covers/cover9.png';
-import cover10 from '@/assets/covers/cover10.png';
-
-import cover11 from '@/assets/covers/cover11.png';
-import cover12 from '@/assets/covers/cover12.png';
-import cover13 from '@/assets/covers/cover13.png';
-import cover14 from '@/assets/covers/cover14.png';
-import cover15 from '@/assets/covers/cover15.png';
-import cover16 from '@/assets/covers/cover16.png';
-import cover17 from '@/assets/covers/cover17.png';
-import cover18 from '@/assets/covers/cover18.png';
-import cover19 from '@/assets/covers/cover19.png';
-import cover20 from '@/assets/covers/cover20.png';
-import cover21 from '@/assets/covers/cover21.png';
-
-const ALL_COVERS = [
-  cover1, cover2, cover3, cover4, cover5, cover6, cover7, cover8, cover9, cover10,
-  cover11, cover12, cover13, cover14, cover15, cover16, cover17, cover18, cover19, cover20, cover21
-];
+const ALL_COVERS = Array.from({ length: 21 }, (_, i) => `/covers/cover${i + 1}.png`);
 
 const Write = () => {
   const [title, setTitle] = useState('');
