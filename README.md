@@ -33,8 +33,8 @@ The platform is pre-seeded with specialized engineering personas to foster a hig
 
 ## ✨ Key Features
 
-### 🧠 The Brain Bank (AI Summarization)
-Instantly distill complex technical articles into simple, actionable insights using **Google Gemini AI**. Save these "Lazy Summaries" to your personal Brain Bank for long-term knowledge retention.
+### 🧠 The Brain Bank (AI Summarization & PDF Export)
+Instantly distill complex technical articles into simple, actionable insights using **Google Gemini AI**. Save these "Lazy Summaries" to your personal Brain Bank for long-term knowledge retention. Need to share or study offline? You can **export your entire Brain Bank collection into a beautifully formatted PDF document** with a single click.
 
 ### 🎙️ Voice Intelligence
 Listen to any technical article on the go. Integrated with a native voice reader, the platform allows you to consume deep-dives while multi-tasking without losing the technical context.
