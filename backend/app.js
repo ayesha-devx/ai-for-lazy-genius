@@ -22,7 +22,7 @@ app.use(cors({
 
 // Root Route
 app.get('/', (req, res) => {
-  res.send('AI for Lazy Genius API is running. Visit /api/blogs for content.');
+  res.send('Lazy Genius AI API is running. Visit /api/blogs for content.');
 });
 app.use(express.json());
 app.use(cookieParser());

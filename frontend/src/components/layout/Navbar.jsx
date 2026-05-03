@@ -102,8 +102,8 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <Link to="/" className="flex items-center gap-2 group">
               <img src={lgIcon} alt="Lazy Genius Logo" className="w-9 h-9 object-contain group-hover:rotate-12 transition-transform drop-shadow-md" />
-              <span className="text-xl font-black bg-gradient-to-r from-purple-700 to-purple-500 dark:from-white dark:to-purple-300 bg-clip-text text-transparent hidden sm:block">
-                AI for Lazy Genius
+              <span className="text-xl font-black bg-gradient-to-r from-purple-700 via-purple-500 to-fuchsia-500 dark:from-purple-400 dark:via-purple-300 dark:to-fuchsia-400 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent hidden sm:block">
+                Lazy Genius AI
               </span>
             </Link>
           </div>

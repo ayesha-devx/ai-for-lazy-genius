@@ -122,7 +122,7 @@ const Home = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.1] md:leading-[1.05] tracking-tight text-slate-900 dark:text-white"
               >
-                AI for the <br />
+                AI for <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-purple-500 to-fuchsia-500 dark:from-purple-400 dark:via-purple-300 dark:to-fuchsia-400 bg-[length:200%_auto] animate-gradient drop-shadow-sm">
                   Lazy Genius
                 </span>

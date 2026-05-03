@@ -61,7 +61,7 @@ const Notes = () => {
       pdf.setFont("helvetica", "bold");
       pdf.setFontSize(14);
       pdf.setTextColor(168, 85, 247); // purple-500
-      pdf.text("AI for Lazy Genius", pdfWidth / 2, 12, { align: "center" });
+      pdf.text("Lazy Genius AI", pdfWidth / 2, 12, { align: "center" });
 
       // Note Content Image
       pdf.addImage(imgData, 'PNG', 0, 20, pdfWidth, pdfHeight);

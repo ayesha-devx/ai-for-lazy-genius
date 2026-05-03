@@ -1,6 +1,6 @@
 <div align="center">
   <img src="frontend/public/lg-icon.png" alt="LG Logo" width="120" height="120">
-  <h1 align="center">AI for Lazy Genius</h1>
+  <h1 align="center">Lazy Genius AI</h1>
   <p align="center">
     <b>The Premium MERN Platform for Technical Thought Leaders</b>
     <br />
@@ -19,7 +19,7 @@
 
 ## 💎 About The Project
 
-**AI for Lazy Genius** is a full-stack technical blogging platform that bridges the gap between deep engineering and effortless consumption. Built with a **Premium Purple Glassmorphic** design language, it provides an ultra-modern, high-performance experience for developers, AI engineers, and cloud architects.
+**Lazy Genius AI** is a full-stack technical blogging platform that bridges the gap between deep engineering and effortless consumption. Built with a **Premium Purple Glassmorphic** design language, it provides an ultra-modern, high-performance experience for developers, AI engineers, and cloud architects.
 
 The platform is designed to automate the friction of blogging: from AI-powered draft generation and voice-enabled reading to a curated technical cover art system.
 

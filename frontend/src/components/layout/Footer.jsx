@@ -20,8 +20,8 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-6 group inline-flex">
               <img src={lgIcon} alt="Lazy Genius Logo" className="w-10 h-10 object-contain group-hover:rotate-12 group-hover:scale-110 transition-all drop-shadow-md" />
-              <span className="text-2xl font-black bg-gradient-to-r from-purple-700 to-purple-500 dark:from-white dark:to-purple-300 bg-clip-text text-transparent">
-                AI for Lazy Genius
+              <span className="text-2xl font-black bg-gradient-to-r from-purple-700 via-purple-500 to-fuchsia-500 dark:from-purple-400 dark:via-purple-300 dark:to-fuchsia-400 bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
+                Lazy Genius AI
               </span>
             </Link>
             <p className="text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed mb-8 font-medium">
@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-16 pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-slate-400 gap-4">
-          <p>&copy; {currentYear} AI for Lazy Genius. All rights reserved.</p>
+          <p>&copy; {currentYear} Lazy Genius AI. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Terms of Service</a>
