@@ -10,7 +10,7 @@ const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-ai-bg text-gray-900 dark:text-white selection:bg-blue-500 selection:text-white transition-colors duration-300">
       <Navbar />
-      <main className="flex-grow pt-24 pb-12">
+      <main className="flex-grow pt-16 pb-12">
         <Outlet />
       </main>
       <Footer />

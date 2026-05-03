@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="frontend/public/favicon.ico" alt="Logo" width="80" height="80">
+  <img src="frontend/public/lg-icon.png" alt="LG Logo" width="120" height="120">
   <h1 align="center">AI for Lazy Genius</h1>
   <p align="center">
     <b>The Premium MERN Platform for Technical Thought Leaders</b>
@@ -42,13 +42,14 @@ Listen to any technical article on the go. Integrated with a native voice reader
 ### ✍️ AI Writer Studio
 Draft professional, structured technical blogs in seconds. Input your Topic, Tone, and Level, and our Gemini-powered engine will handle the heavy lifting, generating high-quality Markdown content.
 
-### 🥇 Smart Cover Picker
-Say goodbye to generic stock photos. The platform includes a **Premium Curated Library** of 21 high-end technical visuals (AI, Servers, Robots, Code). Use the "Choose For Me" engine to instantly match your title with a stunning masterpiece.
+### 🥇 AI Smart Cover Generator
+Say goodbye to weird stock photos. Enter your blog title and our custom **Pollinations AI Proxy Engine** instantly generates 4 unique, high-quality cover variations in real-time. Features an advanced rate-limit stagger and a seamless fallback mechanism that degrades gracefully to our **Premium Curated Library** of 21 local tech masterpieces.
 
 ### 🔮 SaaS-Grade Visual Identity
 Built for those who appreciate design excellence:
 - **Glassmorphic Headers**: Ultra-soft `backdrop-blur` interfaces.
 - **Dynamic Micro-animations**: Powered by Framer Motion for a fluid, alive feel.
+- **Mobile First**: Fully responsive layouts with adaptive stacking buttons and off-canvas navigation.
 - **Unified Identity**: One-user-one-icon deterministic avatar system based on name hashing.
 
 ---

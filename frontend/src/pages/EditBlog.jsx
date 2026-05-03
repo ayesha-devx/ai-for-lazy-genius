@@ -5,6 +5,7 @@ import { Save, Loader2, AlertCircle, Tag as TagIcon, ArrowLeft, Eye, Edit3, Book
 import blogService from '@/services/blogService';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import SmartCoverPicker from '@/components/blog/SmartCoverPicker';
 
 // Premium Curated Cover Images
 import cover1 from '@/assets/covers/cover1.png';
@@ -48,6 +49,7 @@ const EditBlog = () => {
   const [image, setImage] = useState('');
   const [uploading, setUploading] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
+  const [showSmartCoverPicker, setShowSmartCoverPicker] = useState(false);
   const [coverIndex, setCoverIndex] = useState(0);
   
   const navigate = useNavigate();
@@ -177,9 +179,19 @@ const EditBlog = () => {
             {image ? (
               <div className="relative w-full h-64 sm:h-96 rounded-[32px] overflow-hidden shadow-2xl group">
                 <img src={image} alt="Cover" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button onClick={() => setImage('')} className="p-3 bg-red-600 text-white rounded-full shadow-xl hover:bg-red-700 transition-all active:scale-90"><X size={24} /></button>
+                {/* Desktop hover overlay */}
+                <div className="hidden sm:flex absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity items-center justify-center">
+                  <button onClick={() => setImage('')} className="p-3 bg-red-600 text-white rounded-full shadow-xl hover:bg-red-700 transition-all active:scale-90">
+                    <X size={24} />
+                  </button>
                 </div>
+                {/* Mobile permanent close button */}
+                <button 
+                  onClick={() => setImage('')} 
+                  className="sm:hidden absolute top-4 right-4 p-2 bg-red-600/90 text-white rounded-full shadow-xl backdrop-blur-md active:scale-95 transition-all z-20"
+                >
+                  <X size={16} />
+                </button>
               </div>
             ) : (
               <label className={`flex flex-col items-center justify-center w-full h-64 sm:h-96 border-2 border-dashed rounded-[32px] cursor-pointer transition-all ${uploading ? "bg-gray-50 border-indigo-300" : "bg-gray-50/50 border-gray-200 hover:border-indigo-400"}`}>
@@ -195,8 +207,18 @@ const EditBlog = () => {
               </label>
             )}
 
-            {!image && !uploading && (<button onClick={handleGenerateImage} disabled={isGeneratingImage} className="absolute bottom-6 right-6 flex items-center gap-2 px-6 py-3 bg-white dark:bg-zinc-800 text-indigo-600 rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 border border-indigo-50">{isGeneratingImage ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}<span>Choose For Me</span></button>)}
-            {image && !uploading && !isGeneratingImage && (<button onClick={handleGenerateImage} className="absolute bottom-6 right-6 flex items-center gap-2 px-6 py-3 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md text-indigo-600 rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 border border-indigo-50"><RefreshCcw size={16} /><span>Choose Another</span></button>)}
+            {!image && !uploading && (
+              <div className="flex gap-2 absolute bottom-6 right-6">
+                <button onClick={handleGenerateImage} disabled={isGeneratingImage} className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-zinc-800 text-indigo-600 rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 border border-indigo-50">{isGeneratingImage ? <Loader2 size={16} className="animate-spin" /> : <RefreshCcw size={16} />}<span>Random</span></button>
+                <button onClick={() => setShowSmartCoverPicker(true)} className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 border border-indigo-50"><Sparkles size={16} /><span>AI Cover</span></button>
+              </div>
+            )}
+            {image && !uploading && !isGeneratingImage && (
+              <div className="flex gap-2 absolute bottom-6 right-6">
+                <button onClick={handleGenerateImage} className="flex items-center gap-2 px-6 py-3 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md text-indigo-600 rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 border border-indigo-50"><RefreshCcw size={16} /><span>Random</span></button>
+                <button onClick={() => setShowSmartCoverPicker(true)} className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 border border-indigo-50"><Sparkles size={16} /><span>AI Cover</span></button>
+              </div>
+            )}
           </div>
 
           <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Give it a catchy title..." className="w-full text-4xl sm:text-5xl font-black border-none bg-transparent focus:ring-0 placeholder-gray-300 text-gray-900 dark:text-white" />
@@ -239,6 +261,16 @@ const EditBlog = () => {
           </div>
         </div>
       </motion.div>
+      <AnimatePresence>
+        {showSmartCoverPicker && (
+          <SmartCoverPicker 
+            title={title} 
+            onSelect={(url) => { setImage(url); }} 
+            onClose={() => setShowSmartCoverPicker(false)} 
+            fallbackCovers={ALL_COVERS} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

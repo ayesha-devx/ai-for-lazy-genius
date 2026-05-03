@@ -32,3 +32,27 @@ export const generateCoverImage = async (req, res) => {
     res.status(500).json({ message: "Image generation failed" });
   }
 };
+
+export const proxyPollinations = async (req, res) => {
+  try {
+    const { prompt, seed } = req.query;
+    if (!prompt) return res.status(400).send('Prompt is required');
+    
+    // Using fetch to get the image buffer from Pollinations
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=400&nologo=true&seed=${seed || 1}`;
+    
+    const response = await fetch(url);
+    if (!response.ok) {
+       throw new Error('Pollinations rate limit or server error');
+    }
+    
+    const buffer = await response.arrayBuffer();
+    
+    res.set('Content-Type', 'image/jpeg');
+    res.set('Cache-Control', 'public, max-age=31536000');
+    res.send(Buffer.from(buffer));
+  } catch (error) {
+    console.error('Proxy Error:', error);
+    res.status(500).send('Failed to generate image proxy');
+  }
+};

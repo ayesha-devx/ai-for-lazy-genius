@@ -5,6 +5,7 @@ import { Send, Loader2, AlertCircle, Tag as TagIcon, Eye, Edit3, BookOpen, Spark
 import blogService from '@/services/blogService';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import SmartCoverPicker from '@/components/blog/SmartCoverPicker';
 
 // Premium Curated Cover Images
 import cover1 from '@/assets/covers/cover1.png';
@@ -54,6 +55,7 @@ const Write = () => {
   const [aiLevel, setAiLevel] = useState('Beginner');
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [showAiTool, setShowAiTool] = useState(false);
+  const [showSmartCoverPicker, setShowSmartCoverPicker] = useState(false);
   
   const navigate = useNavigate();
 
@@ -304,11 +306,19 @@ const Write = () => {
             {image ? (
               <div className="relative w-full h-64 sm:h-[400px] rounded-2xl sm:rounded-[40px] overflow-hidden shadow-2xl group border border-slate-200 dark:border-white/5">
                 <img src={image} alt="Cover" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                {/* Desktop hover overlay */}
+                <div className="hidden sm:flex absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center backdrop-blur-sm">
                   <button onClick={() => setImage('')} className="p-4 bg-rose-500/90 text-white rounded-full shadow-2xl hover:bg-rose-600 transition-all hover:scale-110">
                     <X size={24} />
                   </button>
                 </div>
+                {/* Mobile permanent close button */}
+                <button 
+                  onClick={() => setImage('')} 
+                  className="sm:hidden absolute top-4 right-4 p-2.5 bg-rose-500/90 text-white rounded-full shadow-2xl backdrop-blur-md active:scale-95 transition-all z-20"
+                >
+                  <X size={18} />
+                </button>
               </div>
             ) : (
               <label className={`flex flex-col items-center justify-center w-full h-64 sm:h-[400px] border-2 border-dashed rounded-2xl sm:rounded-[40px] cursor-pointer transition-all duration-300 ${
@@ -340,24 +350,42 @@ const Write = () => {
             )}
 
             {!image && !uploading && (
-              <button 
-                onClick={handleGenerateImage}
-                disabled={isGeneratingImage}
-                className="sm:absolute relative mt-4 sm:mt-0 sm:bottom-6 sm:right-6 flex items-center justify-center gap-2 px-6 py-3.5 bg-white/90 dark:bg-[#111827]/90 backdrop-blur-md text-purple-600 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:-translate-y-1 border border-purple-100 dark:border-purple-500/20 shadow-xl w-full sm:w-auto"
-              >
-                {isGeneratingImage ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
-                <span>Choose For Me</span>
-              </button>
+              <div className="flex gap-2 sm:absolute relative mt-4 sm:mt-0 sm:bottom-6 sm:right-6 w-full sm:w-auto">
+                <button 
+                  onClick={handleGenerateImage}
+                  disabled={isGeneratingImage}
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3.5 bg-white/90 dark:bg-[#111827]/90 backdrop-blur-md text-slate-600 dark:text-slate-300 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:-translate-y-1 border border-slate-200 dark:border-white/10 shadow-xl"
+                >
+                  {isGeneratingImage ? <Loader2 size={16} className="animate-spin" /> : <RefreshCcw size={16} />}
+                  <span>Random</span>
+                </button>
+                <button 
+                  onClick={() => setShowSmartCoverPicker(true)}
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:-translate-y-1 shadow-xl shadow-purple-500/30"
+                >
+                  <Sparkles size={16} />
+                  <span>AI Cover</span>
+                </button>
+              </div>
             )}
 
             {image && !uploading && !isGeneratingImage && (
-              <button 
-                onClick={handleGenerateImage}
-                className="sm:absolute relative mt-4 sm:mt-0 sm:bottom-6 sm:right-6 flex items-center justify-center gap-2 px-6 py-3.5 bg-white/90 dark:bg-[#111827]/90 backdrop-blur-md text-purple-600 rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:-translate-y-1 border border-purple-100 dark:border-purple-500/20 w-full sm:w-auto"
-              >
-                <RefreshCcw size={16} />
-                <span>Choose Another</span>
-              </button>
+              <div className="flex gap-2 sm:absolute relative mt-4 sm:mt-0 sm:bottom-6 sm:right-6 w-full sm:w-auto">
+                <button 
+                  onClick={handleGenerateImage}
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3.5 bg-white/90 dark:bg-[#111827]/90 backdrop-blur-md text-slate-600 dark:text-slate-300 rounded-2xl shadow-xl font-black text-xs uppercase tracking-widest transition-all hover:-translate-y-1 border border-slate-200 dark:border-white/10"
+                >
+                  <RefreshCcw size={16} />
+                  <span>Random</span>
+                </button>
+                <button 
+                  onClick={() => setShowSmartCoverPicker(true)}
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl shadow-xl shadow-purple-500/30 font-black text-xs uppercase tracking-widest transition-all hover:-translate-y-1"
+                >
+                  <Sparkles size={16} />
+                  <span>AI Cover</span>
+                </button>
+              </div>
             )}
           </div>
 
@@ -447,6 +475,17 @@ const Write = () => {
           <span>Publish Post</span>
         </button>
       </div>
+
+      <AnimatePresence>
+        {showSmartCoverPicker && (
+          <SmartCoverPicker 
+            title={title} 
+            onSelect={(url) => { setImage(url); }} 
+            onClose={() => setShowSmartCoverPicker(false)} 
+            fallbackCovers={ALL_COVERS} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
